@@ -1,0 +1,51 @@
+
+package fibrache;
+
+public class Fibrache {
+    int[] list;
+
+    void init(int n) {
+        list = new int[n];
+        for (int i = 0; i < n; i++) {
+            list[i] = -1;
+        }
+    }
+
+    public int fibrache(int n) {
+        if (n <= 2) {
+            return 1;
+        } else {
+            return fibrache(n - 1) + fibrache(n - 2);
+        }
+    }
+
+    public int fibracheMemoization(int n){
+        int index = n -1;
+        if (list[index] == -1){
+            if (n <= 2) {
+                return 1;
+            } else {
+                return fibrache(n - 1) + fibrache(n - 2);
+            }
+        }else{
+            return list[index];
+        }
+    }
+
+    public int fibracheBottomUp(int n){
+        int []  fi= new int [n+1];
+        fi[1] = 1;
+        fi[2] = 1;
+        for (int i =3 ;i<=n;i++){
+            fi[i] = fi[i-1]+fi[i-2];
+        }
+        return fi[n];
+    }
+
+    public static void main(String... args) {
+        Fibrache fibrache = new Fibrache();
+        fibrache.init(4);
+//        System.out.println(fibrache.fibracheMemoization(4));
+        System.out.println(fibrache.fibracheBottomUp(5));
+    }
+}
