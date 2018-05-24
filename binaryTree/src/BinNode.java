@@ -1,7 +1,9 @@
+import java.util.LinkedList;
+
 public class BinNode<T> {
     private T data;
 
-    BinNode parent,lChild,rChild;
+    BinNode parent, lChild, rChild;
 
     int height = 0;
 
@@ -20,36 +22,51 @@ public class BinNode<T> {
         this.data = data;
     }
 
-    int size(){
-        return 0;
+    int size() {
+        return count(this);
     }
 
-    BinNode insertAsL(BinNode binNode){
+    BinNode insertAsL(BinNode binNode) {
+        this.lChild = binNode;
+        binNode.parent = this;
+        return binNode;
+    }
+
+    BinNode insertAsR(BinNode binNode) {
+        this.rChild = binNode;
+        binNode.parent = this;
+        return binNode;
+    }
+
+    BinNode succ() {
         return null;
     }
 
-    BinNode insertAsR(BinNode binNode){
-        return null;
+    void travLevel() {
+        LinkedList<BinNode> queue = new LinkedList<>();
+        queue.addLast(this);
+        while (queue.size() > 0) {
+            System.out.println(queue.peek().data);
+            queue.removeFirst();
+            if (this.lChild != null) {
+                queue.addLast(this.lChild);
+            }
+            if (this.rChild != null) {
+                queue.addLast(this.rChild);
+            }
+        }
     }
 
-    BinNode succ(){
-        return null;
+    void travPre() {
+        this.visitedPre(this);
     }
 
-    void travLevel(){
-
+    void travIn() {
+        this.visitedIn(this);
     }
 
-    void travPre(){
-
-    }
-
-    void travIn(){
-
-    }
-
-    void travPost(){
-
+    void travPost() {
+        this.visitedPost(this);
     }
 
     @Override
@@ -65,5 +82,45 @@ public class BinNode<T> {
     @Override
     public int hashCode() {
         return data != null ? data.hashCode() : 0;
+    }
+
+    private int count(BinNode binNode) {
+        int size = 0;
+        if (binNode != null) {
+            size++;
+            return count(binNode.lChild) + count(binNode.rChild) + 1;
+        } else {
+            return size;
+        }
+    }
+
+    private void visitedPre(BinNode binNode) {
+        if (binNode != null) {
+            System.out.println(binNode.data);
+        }
+        visitedPre(this.lChild);
+        visitedPre(this.rChild);
+    }
+
+    private void visitedIn(BinNode binNode) {
+        if (this.lChild != null) {
+            visitedIn(this.lChild);
+        }
+        if (binNode != null) {
+            System.out.println(binNode.data);
+        }
+        visitedIn(this.rChild);
+    }
+
+    private void visitedPost(BinNode binNode) {
+        if (this.lChild != null) {
+            visitedPost(this.lChild);
+        }
+        if (this.rChild != null) {
+            visitedPost(this.rChild);
+        }
+        if (binNode != null) {
+            System.out.println(binNode.data);
+        }
     }
 }
