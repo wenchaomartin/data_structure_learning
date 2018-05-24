@@ -26,13 +26,15 @@ public class BinNode<T> {
         return count(this);
     }
 
-    BinNode insertAsL(BinNode binNode) {
+    BinNode insertAsL(T e) {
+        BinNode<T> binNode = new BinNode<>(e);
         this.lChild = binNode;
         binNode.parent = this;
         return binNode;
     }
 
-    BinNode insertAsR(BinNode binNode) {
+    BinNode insertAsR(T e) {
+        BinNode<T> binNode = new BinNode<>(e);
         this.rChild = binNode;
         binNode.parent = this;
         return binNode;
