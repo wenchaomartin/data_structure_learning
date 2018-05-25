@@ -3,10 +3,15 @@ public abstract class BinTree<T> {
 
     private BinNode<T> root;
 
-    abstract int updateHeight(BinNode<T> node);
+    int updateHeight(BinNode<T> node) {
+        return node.height = height(node);
+    }
 
     void updateHeightAbove(BinNode<T> node) {
-
+        while (node != null) {
+            updateHeight(node);
+            node = node.parent;
+        }
     }
 
     public BinTree() {
@@ -46,14 +51,36 @@ public abstract class BinTree<T> {
     }
 
     BinTree<T> attachAsLC(BinNode<T> binNode, BinTree<T> binTree) {
-
+        binNode.lChild = binTree.root;
+        binTree.root.parent = binNode;
+        binTree = null;
+        size += binTree.size;
+        binNode.height += binTree.root.height;
+        updateHeightAbove(binNode);
+        return this;
     }
 
     BinTree<T> attachAsRC(BinNode<T> binNode, BinTree<T> binTree) {
-
+        binNode.rChild = binTree.root;
+        binTree.root.parent = binNode;
+        binTree = null;
+        size += binTree.size;
+        binNode.height += binTree.root.height;
+        updateHeightAbove(binNode);
+        return this;
     }
 
     int remove(BinNode<T> binNode) {
 
+    }
+
+    int height(BinNode<T> binNode) {
+        if (binNode == null) {
+            return -1;
+        } else {
+            int lHeight = height(binNode.lChild);
+            int rHeight = height(binNode.rChild);
+            return Math.max(lHeight, rHeight) + 1;
+        }
     }
 }
