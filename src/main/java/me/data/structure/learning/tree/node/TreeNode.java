@@ -1,49 +1,46 @@
 package me.data.structure.learning.tree.node;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Create by songwenchao on 2019-09-01
  */
 public class TreeNode<T extends Comparable<T>> implements Comparable<T> {
 
-    private T value;
+    public T val;
 
-    TreeNode<T> leftChild;
+    public TreeNode<T> left;
 
-    TreeNode<T> rightChild;
+    public TreeNode<T> right;
 
-    public TreeNode(T value) {
-        this.value = value;
+    public TreeNode(T val) {
+        this.val = val;
     }
 
-    public T getValue() {
-        return value;
+    public T getVal() {
+        return val;
     }
 
-    public void setValue(T value) {
-        this.value = value;
+    public void setVal(T val) {
+        this.val = val;
     }
 
-    public TreeNode<T> getLeftChild() {
-        return leftChild;
+    public TreeNode<T> getLeft() {
+        return left;
     }
 
-    public void setLeftChild(TreeNode<T> leftChild) {
-        this.leftChild = leftChild;
+    public void setLeft(TreeNode<T> left) {
+        this.left = left;
     }
 
-    public TreeNode<T> getRightChild() {
-        return rightChild;
+    public TreeNode<T> getRight() {
+        return right;
     }
 
-    public void setRightChild(TreeNode<T> rightChild) {
-        this.rightChild = rightChild;
+    public void setRight(TreeNode<T> right) {
+        this.right = right;
     }
 
     public int compareTo(T o) {
-        return this.value.compareTo(o);
+        return this.val.compareTo(o);
     }
 
 

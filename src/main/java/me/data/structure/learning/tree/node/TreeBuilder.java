@@ -25,10 +25,10 @@ public class TreeBuilder<V extends Comparable<V>> {
 
         if (node == null) {
             node = new TreeNode(object);
-        } else if (node.getValue().compareTo(object) > 0) {
-            node.leftChild = newTree(node.leftChild, object);
+        } else if (node.getVal().compareTo(object) > 0) {
+            node.left = newTree(node.left, object);
         } else {
-            node.rightChild = newTree(node.rightChild, object);
+            node.right = newTree(node.right, object);
         }
         return node;
     }
@@ -38,12 +38,12 @@ public class TreeBuilder<V extends Comparable<V>> {
             return new ArrayList<>();
         } else {
             List<V> list = new ArrayList<>();
-            list.add(root.getValue());
-            if (root.leftChild != null) {
-                list.addAll(preTraversal(root.leftChild));
+            list.add(root.getVal());
+            if (root.left != null) {
+                list.addAll(preTraversal(root.left));
             }
-            if (root.rightChild != null) {
-                list.addAll(preTraversal(root.rightChild));
+            if (root.right != null) {
+                list.addAll(preTraversal(root.right));
             }
             return list;
         }
@@ -61,14 +61,14 @@ public class TreeBuilder<V extends Comparable<V>> {
             while (!stack.isEmpty()) {
 
                 root = stack.pop();
-                result.add(root.getValue());
+                result.add(root.getVal());
 
-                if (root.rightChild != null) {
-                    stack.push(root.rightChild);
+                if (root.right != null) {
+                    stack.push(root.right);
                 }
 
-                if (root.leftChild != null) {
-                    stack.push(root.leftChild);
+                if (root.left != null) {
+                    stack.push(root.left);
 
                 }
             }
