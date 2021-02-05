@@ -21,6 +21,12 @@ public class TreeBuilder<V extends Comparable<V>> {
         return root;
     }
 
+    /**
+     * 构造二叉平衡树
+     * @param node
+     * @param object
+     * @return
+     */
     private TreeNode newTree(TreeNode node, V object) {
 
         if (node == null) {
