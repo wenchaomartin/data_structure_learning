@@ -22,7 +22,7 @@ public class ListNode {
     }
 
     private String accum(ListNode node) {
-        if (node == null) return null;
+        if (node == null) return "";
         return node.val + accum(node.next);
     }
 
