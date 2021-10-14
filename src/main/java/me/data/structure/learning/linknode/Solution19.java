@@ -4,7 +4,8 @@ package me.data.structure.learning.linknode;
  * 19. 删除链表的倒数第 N 个结点
  */
 public class Solution19 {
-    /**  
+    /**
+     * test1
      * 两个指针相差n 个step.何时 node!=null 何时node.next!=null ,我试了2次才能写对。让我想， 我怕想不来。
      */
     public ListNode removeNthFromEnd(ListNode head, int n) {
