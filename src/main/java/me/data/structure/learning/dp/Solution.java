@@ -1,5 +1,8 @@
 package me.data.structure.learning.dp;
 
+/**
+ * house robber
+ */
 class Solution {
     public int rob(int[] nums) {
         //前j 个房子能盗窃的最大现金数 用函数dp[j]
